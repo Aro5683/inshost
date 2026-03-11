@@ -70,31 +70,16 @@ border-radius:25px;
 <body>
 
 <div class="topbar">
+
 <button onclick="mobileView()">📱 Mobile View</button>
 <button onclick="pcView()">💻 PC View</button>
+<button onclick="resetEditor()">🧹 Clear / Reset</button>
+
 </div>
 
 <div class="container">
 
-<textarea id="editor">
-
-<meta name="viewport" content="width=device-width, initial-scale=1">
-
-<h1>Hello 🌍</h1>
-<p>Edit this code to see live preview.</p>
-
-<style>
-body{
-font-family:sans-serif;
-padding:20px;
-}
-
-h1{
-color:blue;
-}
-</style>
-
-</textarea>
+<textarea id="editor"></textarea>
 
 <div class="preview-area">
 <iframe id="preview"></iframe>
@@ -106,6 +91,24 @@ color:blue;
 
 const editor = document.getElementById("editor");
 const preview = document.getElementById("preview");
+
+const defaultCode = `
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<h1>Hello Developer 🚀</h1>
+<p>Start writing your HTML here...</p>
+
+<style>
+body{
+font-family:sans-serif;
+padding:20px;
+}
+
+h1{
+color:blue;
+}
+</style>
+`;
 
 function updatePreview(){
 preview.srcdoc = editor.value;
@@ -121,6 +124,12 @@ function pcView(){
 preview.classList.remove("mobile");
 }
 
+function resetEditor(){
+editor.value = defaultCode;
+updatePreview();
+}
+
+editor.value = defaultCode;
 updatePreview();
 
 </script>
